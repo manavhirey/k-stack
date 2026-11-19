@@ -42,6 +42,17 @@ for s in brainstorming systematic-debugging ponytail; do
   [[ -f "$T/fresh/.claude/skills/$s/SKILL.md" && -f "$T/fresh/.claude/skills/$s/LICENSE" ]] || fail "$s skill or licence not installed"
 done
 ! grep -rq "superpowers:" "$KIT/.claude/skills/brainstorming/SKILL.md" "$KIT/.claude/skills/systematic-debugging/SKILL.md" || fail "dangling superpowers: skill reference"
+# Browser MCP: pinned, locked down, and identical in every agent that declares it
+for a in e2e reviewer; do
+  f="$KIT/.claude/agents/$a.md"
+  for flag in 'chrome-devtools-mcp@1.12.0' -- --headless --isolated --no-usage-statistics --no-performance-crux --no-category-extensions 'allowed-url-pattern=http://localhost'; do
+    [[ "$flag" == -- ]] && continue
+    grep -qF -- "$flag" "$f" || fail "$a: chrome-devtools missing $flag"
+  done
+done
+[[ "$(sed -n '/^mcpServers:/,/^---/p' "$KIT/.claude/agents/e2e.md")" == "$(sed -n '/^mcpServers:/,/^---/p' "$KIT/.claude/agents/reviewer.md")" ]] || fail "e2e and reviewer chrome-devtools configs differ"
+! grep -rq 'chrome-devtools-mcp@latest' "$KIT/.claude" || fail "unpinned chrome-devtools-mcp"
+python3 -c "import json,sys; p=json.load(open(sys.argv[1]))['permissions']; assert 'mcp__chrome-devtools__install_extension' in p['deny']" "$KIT/.claude/settings.json" || fail "install_extension not denied"
 for a in "$KIT"/.claude/agents/*.md; do
   head -8 "$a" | grep -q '^model: ' || fail "$(basename "$a"): no model"
   head -8 "$a" | grep -q '^effort: ' || fail "$(basename "$a"): no effort"

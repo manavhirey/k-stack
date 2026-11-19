@@ -61,9 +61,28 @@ Small, obvious fixes don't need a brief. Use the loop for anything you'd want to
 | 9. Switch at boundaries with a handoff | `/handoff`, `handoff.md` |
 | Separate implementation from review | `reviewer` gets only the brief and diff, labels evidence, may find nothing |
 
+## End-to-end browser testing
+
+The `e2e` agent and the `reviewer` drive a real headless Chrome through [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp), declared in their own frontmatter so no other agent loads its ~50 tools. The lead and `/factory-verify` hand browser checks to `e2e`. Write those criteria in the brief as a URL, the user actions, and the expected result.
+
+The server is locked down:
+
+| Setting | Why |
+|---|---|
+| `chrome-devtools-mcp@1.12.0` | Pinned. Released 2026-10-22; `@latest` would run whatever is published next. |
+| `--headless --isolated` | A throwaway profile each run, so none of your cookies, sign-ins or extensions are involved. |
+| `--allowed-url-pattern` for `localhost` and `127.0.0.1` | Only local apps. Add a pattern to both agents to test staging. Needs Chrome 149 or later. |
+| `--no-usage-statistics` and `CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS` | Google's usage telemetry is on by default. |
+| `--no-performance-crux` | Otherwise performance tools send page URLs to Google's CrUX API. |
+| `CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS` | No npm update checks. |
+| `--no-category-extensions` and `install_extension` denied | Agents can't install browser extensions. |
+| `upload_file` set to ask | Uploading a local file needs your approval. |
+
+Requirements: Node.js LTS and Chrome stable. The first run downloads the package through `npx`. Frontmatter MCP servers only start in a trusted folder.
+
 ## Worked example
 
-`examples/robust-slugify/` is a real dry run of the loop on a toy task: the brief, the lead's report (63 tests passing, a brief/settings mismatch flagged), the slug.py diff, and a fresh reviewer's findings (verdict *accept with fixes*, two LIKELY findings, one SPECULATIVE, and an honest "Not reviewed" list).
+`examples/robust-slugify/` is a real dry run of the loop on a toy task: the brief, the lead's report (63 tests passing, a brief/settings mismatch flagged), the slug.py diff, an e2e browser run that caught a real encoding bug (`e2e.md`), and a fresh reviewer's findings (verdict *accept with fixes*, two LIKELY findings, one SPECULATIVE, and an honest "Not reviewed" list).
 
 ## Limits to know
 

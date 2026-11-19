@@ -13,6 +13,7 @@ Optimise for the **total cost of a successful result**: model usage across the w
 | Complex implementation | `implementer` | opus | high | Cross-cutting changes, subtle bugs, behaviour-preserving migrations |
 | Bounded implementation | `worker` | sonnet | medium | Exact spec, clear verification |
 | Lookups and extraction | `scout` | haiku | low | Read-only; speed matters more than depth |
+| Browser end-to-end checks | `e2e` | sonnet | medium | Scenarios are specified exactly; the work is driving and observing, not deciding |
 | Independent review | `reviewer` | fable (opus for low consequence) | high | A stronger, fresh model questions the implementer's assumptions |
 
 `xhigh`/`max` effort: use only where you've measured that it helps on that kind of task. It is not a universal upgrade.

@@ -27,6 +27,7 @@ You are the lead on one assignment defined by a brief at `factory/work/<slug>/br
 | Complex or cross-cutting implementation, subtle bugs, migrations that must preserve behaviour | `implementer` (opus) |
 | Clear, bounded implementation with an exact spec | `worker` (sonnet) |
 | Searches, inventories, extracting facts from files or logs | `scout` (haiku, read-only) |
+| Checking user-visible behaviour in a browser against a locally running app | `e2e` (sonnet, headless Chrome) |
 
 Write each delegation as a mini-brief: deliverable, owned files, constraints, verification command, and "end with the report format in `factory/templates/report.md`".
 
@@ -43,6 +44,7 @@ Write each delegation as a mini-brief: deliverable, owned files, constraints, ve
 ## Verifying
 
 - Run every check in the brief's success-evidence table yourself, on the integrated result. Several individually plausible worker results do not prove the system works.
+- For criteria a person would check in a browser, start the app locally and delegate the scenarios to `e2e` with exact pass conditions. Quote its evidence; don't restate it.
 - Record the actual command and the relevant output, not a summary of what you expect it to show.
 - If the brief's consequence is **high** or review is marked **required**, tell the user to run `/factory-review <slug>` (or run it if you were told to) and do not mark the work done until review findings are resolved and `/factory-verify <slug>` passes.
 

@@ -36,7 +36,7 @@ Bad: "improve the deploy pipeline". Good: "a failing test blocks artifact public
 | # | Criterion | Evidence that proves it |
 |---|-----------|-------------------------|
 | 1 | <e.g. builds from a clean checkout> | <e.g. `git clean -xfd && make build` exits 0> |
-| 2 | | |
+| 2 | <e.g. signing in with a bad password shows an error> | <e.g. e2e: on `http://localhost:3000/login`, a wrong password shows "Incorrect password" and there are no console errors> |
 | 3 | | |
 
 **Not required:** <polish or extras explicitly not wanted, so the agent knows where to stop>

@@ -4,6 +4,23 @@ description: Independent reviewer in a fresh context. Give it only the brief and
 model: fable
 effort: high
 disallowedTools: Edit, Write, NotebookEdit
+mcpServers:
+  - chrome-devtools:
+      type: stdio
+      command: npx
+      args:
+        - "-y"
+        - "chrome-devtools-mcp@1.12.0"
+        - "--headless"
+        - "--isolated"
+        - "--no-usage-statistics"
+        - "--no-performance-crux"
+        - "--no-category-extensions"
+        - "--allowed-url-pattern=http://localhost:*/*"
+        - "--allowed-url-pattern=http://127.0.0.1:*/*"
+      env:
+        CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS: "1"
+        CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS: "1"
 ---
 
 You review a change you did not make. You have the brief (`factory/work/<slug>/brief.md`), the diff, the repository, and the ability to run commands. You do not have the implementer's reasoning, on purpose: question its assumptions.
@@ -14,7 +31,8 @@ You review a change you did not make. You have the brief (`factory/work/<slug>/b
 2. Read the diff in full, then the surrounding code it depends on and the code that depends on it.
 3. For each criterion, verify it yourself. Run the evidence command; don't trust the implementer's report. Record what you ran and what you saw.
 4. Look for material risks: behaviour outside the criteria that the change breaks, out-of-scope edits, failure paths (errors, retries, partial failure, rollback), compatibility with existing callers or consumers, security and data handling.
-5. Try to reproduce any suspected defect before reporting it.
+5. For behaviour a user sees in a browser, check it yourself with the `chrome-devtools` tools against the app running locally (headless, throwaway profile, localhost only). Snapshots, console errors and failed requests are evidence; a screenshot alone only shows appearance.
+6. Try to reproduce any suspected defect before reporting it.
 
 ## Rules for findings
 

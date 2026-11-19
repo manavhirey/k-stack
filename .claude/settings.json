@@ -36,7 +36,8 @@
       "Bash(cargo clippy *)",
       "Bash(make test *)",
       "Bash(make build *)",
-      "Bash(make lint *)"
+      "Bash(make lint *)",
+      "mcp__chrome-devtools"
     ],
     "ask": [
       "Bash(git push *)",
@@ -58,7 +59,8 @@
       "Bash(curl *)",
       "Bash(wget *)",
       "Bash(docker *)",
-      "WebFetch"
+      "WebFetch",
+      "mcp__chrome-devtools__upload_file"
     ],
     "deny": [
       "Bash(git push --force *)",
@@ -86,7 +88,8 @@
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
       "Bash(cat .env*)",
-      "Bash(cat */.env*)"
+      "Bash(cat */.env*)",
+      "mcp__chrome-devtools__install_extension"
     ]
   }
 }
