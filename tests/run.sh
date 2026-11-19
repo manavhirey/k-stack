@@ -36,6 +36,12 @@ python3 -c "import json,sys; d=json.load(open(sys.argv[1]))['permissions']['deny
 # 5. Agent frontmatter has model + effort
 grep -q "^  - ponytail" "$KIT/.claude/agents/implementer.md" || fail "implementer does not preload ponytail"
 [[ -f "$T/fresh/.claude/skills/ponytail/SKILL.md" ]] || fail "ponytail skill not installed"
+grep -q "^  - systematic-debugging" "$KIT/.claude/agents/implementer.md" || fail "implementer does not preload systematic-debugging"
+grep -q "^  - systematic-debugging" "$KIT/.claude/agents/worker.md" || fail "worker does not preload systematic-debugging"
+for s in brainstorming systematic-debugging ponytail; do
+  [[ -f "$T/fresh/.claude/skills/$s/SKILL.md" && -f "$T/fresh/.claude/skills/$s/LICENSE" ]] || fail "$s skill or licence not installed"
+done
+! grep -rq "superpowers:" "$KIT/.claude/skills/brainstorming/SKILL.md" "$KIT/.claude/skills/systematic-debugging/SKILL.md" || fail "dangling superpowers: skill reference"
 for a in "$KIT"/.claude/agents/*.md; do
   head -8 "$a" | grep -q '^model: ' || fail "$(basename "$a"): no model"
   head -8 "$a" | grep -q '^effort: ' || fail "$(basename "$a"): no effort"

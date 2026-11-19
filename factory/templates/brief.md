@@ -16,6 +16,10 @@ Fill every section. "None" is a valid answer; a blank is not.
 <One or two sentences describing the resulting behaviour, not the steps.
 Bad: "improve the deploy pipeline". Good: "a failing test blocks artifact publication".>
 
+## Approaches considered (optional)
+
+<For non-trivial work: the two or three ways of building it, what each trades off, which was picked and why. Brainstorming fills this in.>
+
 ## 2. Scope — what is in and out?
 
 - **In scope (may change):** <repos, directories, services, environments>. `factory/work/<slug>/` is always in scope for the report, handoff and review files.

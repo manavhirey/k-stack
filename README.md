@@ -22,7 +22,7 @@ The installer copies the agents, skills, templates and docs. It never overwrites
 
 | Step | Command | Output |
 |------|---------|--------|
-| Define the work | `/brief add retry with backoff to the deploy step` | `factory/work/<slug>/brief.md` |
+| Define the work | `/brief add retry with backoff to the deploy step` (uses [brainstorming](https://github.com/obra/superpowers) when the ask is unclear) | `factory/work/<slug>/brief.md` |
 | Build (interactive) | `/build <slug>` | code changes + `report.md` |
 | Build (long, unattended) | `claude --agent lead --effort high "Execute factory/work/<slug>/brief.md"` | same |
 | Independent review | `/factory-review <slug>`, or a new session: `claude --agent reviewer "Review main...HEAD against factory/work/<slug>/brief.md"` | `review.md` |
@@ -41,8 +41,8 @@ Small, obvious fixes don't need a brief. Use the loop for anything you'd want to
 | `factory/templates/review.md` | Findings labelled demonstrated / likely / speculative |
 | `factory/templates/handoff.md` | Goal, decisions, state, checks done, remaining work, blockers |
 | `factory/FACTORY.md` | Working agreement, imported into CLAUDE.md with `@factory/FACTORY.md` |
-| `.claude/agents/` | `lead` (fable/high), `implementer` (opus/high, preloads a pinned [ponytail](https://github.com/dietrichgebert/ponytail) skill), `worker` (sonnet/medium), `scout` (haiku/low, read-only), `reviewer` (fable/high, no edit tools) |
-| `.claude/skills/` | `brief`, `build`, `factory-review`, `factory-verify`, `handoff`, `tune-instructions`, plus vendored `ponytail` (see its `VENDORED.md`) |
+| `.claude/agents/` | `lead` (fable/high), `implementer` (opus/high, preloads pinned [ponytail](https://github.com/dietrichgebert/ponytail) and [systematic-debugging](https://github.com/obra/superpowers) skills), `worker` (sonnet/medium, preloads `systematic-debugging`), `scout` (haiku/low, read-only), `reviewer` (fable/high, no edit tools) |
+| `.claude/skills/` | `brief`, `build`, `factory-review`, `factory-verify`, `handoff`, `tune-instructions`, plus vendored `ponytail`, `brainstorming` and `systematic-debugging` (each pinned, with a `VENDORED.md` recording source, commit and local edits) |
 | `.claude/settings.json` | allow / ask / deny rules that actually enforce the boundaries |
 | `docs/model-and-effort.md` | When to use which model and effort, and how to diagnose before escalating |
 
