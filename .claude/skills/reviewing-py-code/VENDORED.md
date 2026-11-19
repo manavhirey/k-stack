@@ -10,4 +10,6 @@
 - `references/` and `examples/` are unchanged, loaded on demand.
 - `README.md` is dropped (it described the upstream report format).
 
+The design-patterns and SOLID references are also read at planning time by `/brief` and the `lead` for large structural tasks, so pattern choices are made in the brief, not suggested in review.
+
 It is preloaded into the `reviewer` agent through its `skills:` frontmatter. To update, diff the new archive's `references/` and `examples/` against this folder and re-check the rewritten `SKILL.md` against the new upstream one.

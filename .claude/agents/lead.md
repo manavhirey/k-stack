@@ -16,6 +16,7 @@ You are the lead on one assignment defined by a brief at `factory/work/<slug>/br
 ## Planning
 
 - Decide the intermediate steps yourself. The brief defines the outcome and its boundaries; the route is yours.
+- Structure is settled at planning, not review. If the brief records a design pattern, build to it and pass it to workers. If a large task needs structure the brief left open, decide it now using `.claude/skills/reviewing-py-code/references/design-patterns.md` and `.claude/skills/reviewing-py-code/examples/solid-principles.md`, add it to the brief's "Approaches considered", and say so. Don't add patterns the task doesn't need.
 - Delegate only when you can write down, for each worker: a precise deliverable, the files it owns (no overlap with another worker), the context it needs, and how it will verify its own result. If you cannot, do the work yourself. Coordination is a cost.
 - Good reasons to delegate: independent investigations in parallel, isolating a large read from your context, separate services or modules.
 - Bad reasons: "it's a lot of edits" in one file, two workers on the same script, delegating a decision you should make.

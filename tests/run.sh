@@ -40,6 +40,9 @@ grep -q "^  - systematic-debugging" "$KIT/.claude/agents/implementer.md" || fail
 grep -q "^  - systematic-debugging" "$KIT/.claude/agents/worker.md" || fail "worker does not preload systematic-debugging"
 grep -q "^  - reviewing-py-code" "$KIT/.claude/agents/reviewer.md" || fail "reviewer does not preload reviewing-py-code"
 [[ -f "$T/fresh/.claude/skills/reviewing-py-code/SKILL.md" && -f "$T/fresh/.claude/skills/reviewing-py-code/references/code-smells.md" ]] || fail "reviewing-py-code not installed"
+for f in .claude/skills/brief/SKILL.md .claude/agents/lead.md; do
+  for r in $(grep -o "\.claude/skills/reviewing-py-code/[a-z/-]*\.md" "$KIT/$f"); do [[ -f "$T/fresh/$r" ]] || fail "$f references missing $r"; done
+done
 for s in brainstorming systematic-debugging ponytail; do
   [[ -f "$T/fresh/.claude/skills/$s/SKILL.md" && -f "$T/fresh/.claude/skills/$s/LICENSE" ]] || fail "$s skill or licence not installed"
 done

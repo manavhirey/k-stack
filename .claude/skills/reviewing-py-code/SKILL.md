@@ -11,6 +11,7 @@ An extra pass for reviews whose diff touches `.py` files. If it touches none, sk
 
 - Only lines the diff adds or changes, plus what they call directly when needed to judge them. Untouched code is out of scope even if it is poor.
 - Don't suggest refactors, function splits, new abstractions or design patterns. The brief sets scope and the implementer works to the smallest change; a review that pushes restructuring fights both.
+- If the brief's "Approaches considered" records a design pattern, check the change follows it; don't reopen the choice.
 - Do flag the reverse: abstraction, indirection or generality the change added that the brief doesn't need (Speculative Generality, Lazy Class, Middle Man).
 
 ## What to look for in the changed lines
