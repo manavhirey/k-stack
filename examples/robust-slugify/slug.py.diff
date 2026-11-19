@@ -1,0 +1,37 @@
+diff --git a/slug.py b/slug.py
+index a34eedf..0c5231f 100644
+--- a/slug.py
++++ b/slug.py
+@@ -1,2 +1,31 @@
++import re
++import unicodedata
++
++# Latin letters that have no Unicode decomposition to a base ASCII letter.
++_NO_DECOMPOSITION = str.maketrans({
++    "æ": "ae",
++    "œ": "oe",
++    "ø": "o",
++    "ł": "l",
++    "đ": "d",
++    "ð": "d",
++    "þ": "th",
++    "ı": "i",
++})
++
++_NON_SLUG = re.compile(r"[^a-z0-9]+")
++
++
+ def slugify(text):
+-    return text.lower().replace(" ", "-")
++    """Return a URL-safe slug containing only ``[a-z0-9-]``.
++
++    Accented Latin letters are transliterated to ASCII. Every run of other
++    characters (whitespace, punctuation, non-Latin scripts) becomes a single
++    ``-``, and leading/trailing ``-`` are removed. Returns ``""`` when nothing
++    sluggable remains.
++    """
++    # casefold() lowercases and expands e.g. "ß" -> "ss".
++    text = unicodedata.normalize("NFKD", text.casefold())
++    text = "".join(ch for ch in text if not unicodedata.combining(ch))
++    text = text.translate(_NO_DECOMPOSITION)
++    return _NON_SLUG.sub("-", text).strip("-")
