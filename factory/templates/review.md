@@ -27,6 +27,11 @@
 - **Impact:** <what breaks, for whom>
 - **Suggested fix:** <optional>
 
+## Advisory (Python)
+
+<!-- Only when the diff touches .py files (py-code-review skill). One line each:
+     path:line — problem — suggested change. Never affects the verdict. Delete if empty. -->
+
 ## Not reviewed
 
 <Areas the reviewer could not check and why (no access, no test env, out of time).>

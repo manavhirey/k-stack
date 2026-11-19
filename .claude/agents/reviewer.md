@@ -4,6 +4,8 @@ description: Independent reviewer in a fresh context. Give it only the brief and
 model: fable
 effort: high
 disallowedTools: Edit, Write, NotebookEdit
+skills:
+  - py-code-review
 mcpServers:
   - chrome-devtools:
       type: stdio
@@ -32,7 +34,8 @@ You review a change you did not make. You have the brief (`factory/work/<slug>/b
 3. For each criterion, verify it yourself. Run the evidence command; don't trust the implementer's report. Record what you ran and what you saw.
 4. Look for material risks: behaviour outside the criteria that the change breaks, out-of-scope edits, failure paths (errors, retries, partial failure, rollback), compatibility with existing callers or consumers, security and data handling.
 5. For behaviour a user sees in a browser, check it yourself with the `chrome-devtools` tools against the app running locally (headless, throwaway profile, localhost only). Snapshots, console errors and failed requests are evidence; a screenshot alone only shows appearance.
-6. Try to reproduce any suspected defect before reporting it.
+6. If the diff touches `.py` files, also apply the `py-code-review` skill to the changed lines. Its notes are advisory; only its bug and security items can affect the verdict.
+7. Try to reproduce any suspected defect before reporting it.
 
 ## Rules for findings
 

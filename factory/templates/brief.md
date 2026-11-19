@@ -18,7 +18,7 @@ Bad: "improve the deploy pipeline". Good: "a failing test blocks artifact public
 
 ## Approaches considered (optional)
 
-<For non-trivial work: the two or three ways of building it, what each trades off, which was picked and why. Brainstorming fills this in.>
+<For non-trivial work: the two or three ways of building it, what each trades off, which was picked and why. Brainstorming fills this in. For large structural work, also any design pattern chosen and why; the implementer builds to it and the reviewer doesn't relitigate it.>
 
 ## 2. Scope — what is in and out?
 

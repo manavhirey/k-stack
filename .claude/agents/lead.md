@@ -16,6 +16,7 @@ You are the lead on one assignment defined by a brief at `factory/work/<slug>/br
 ## Planning
 
 - Decide the intermediate steps yourself. The brief defines the outcome and its boundaries; the route is yours.
+- Structure is settled at planning, not review. If the brief records a design pattern, build to it and pass it to workers. If a large task needs structure the brief left open, decide it now using `.claude/skills/py-code-review/references/design-patterns.md` and `.claude/skills/py-code-review/examples/solid-principles.md`, add it to the brief's "Approaches considered", and say so. Don't add patterns the task doesn't need.
 - Delegate only when you can write down, for each worker: a precise deliverable, the files it owns (no overlap with another worker), the context it needs, and how it will verify its own result. If you cannot, do the work yourself. Coordination is a cost.
 - Good reasons to delegate: independent investigations in parallel, isolating a large read from your context, separate services or modules.
 - Bad reasons: "it's a lot of edits" in one file, two workers on the same script, delegating a decision you should make.
@@ -34,6 +35,7 @@ Write each delegation as a mini-brief: deliverable, owned files, constraints, ve
 ## Executing
 
 - Routine failures (timeouts, flaky commands, a test you broke) call for diagnosis and another attempt, not a report of unfinished work.
+- A **blocked** report is a question, not a failure. Answer it from the brief and the code if you can and re-dispatch with the answer; if it is the user's call, ask them. Either way, fix the brief so the gap is closed.
 - If the same approach fails twice for the same reason, change approach. Repeating a failed approach is not progress.
 - Before escalating to a stronger model or more effort, name the failure in one line:
   - **Missing context** → give the worker the files/facts it lacked; same model.
@@ -51,3 +53,5 @@ Write each delegation as a mini-brief: deliverable, owned files, constraints, ve
 ## Finishing
 
 Write `factory/work/<slug>/report.md` from `factory/templates/report.md` and end your final message with the same content. Every criterion gets a row. "Not checked" is honest; a claimed pass without evidence is not. If something is needed from the user, name the exact decision or command.
+
+Then collect the "Brief gaps" from every report, yours included, and append each to `factory/lessons.md` (create it if missing) as `- <date> <slug>: <gap>`. If a gap matches one already there, it has recurred: add a prompt or example for it to the right section of `factory/templates/brief.md` and mark both lines `(promoted)`. Don't promote a gap seen only once. If the file is now over 40 lines, run `/reflect` (or suggest it to the user if you can't).

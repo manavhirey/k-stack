@@ -38,6 +38,16 @@ grep -q "^  - ponytail" "$KIT/.claude/agents/implementer.md" || fail "implemente
 [[ -f "$T/fresh/.claude/skills/ponytail/SKILL.md" ]] || fail "ponytail skill not installed"
 grep -q "^  - systematic-debugging" "$KIT/.claude/agents/implementer.md" || fail "implementer does not preload systematic-debugging"
 grep -q "^  - systematic-debugging" "$KIT/.claude/agents/worker.md" || fail "worker does not preload systematic-debugging"
+grep -q "^  - py-code-review" "$KIT/.claude/agents/reviewer.md" || fail "reviewer does not preload py-code-review"
+[[ -f "$T/fresh/.claude/skills/py-code-review/SKILL.md" && -f "$T/fresh/.claude/skills/py-code-review/references/code-smells.md" ]] || fail "py-code-review not installed"
+for f in .claude/skills/brief/SKILL.md .claude/agents/lead.md; do
+  for r in $(grep -o "\.claude/skills/py-code-review/[a-z/-]*\.md" "$KIT/$f"); do [[ -f "$T/fresh/$r" ]] || fail "$f references missing $r"; done
+done
+grep -q '^## Brief gaps' "$KIT/factory/templates/report.md" || fail "report template lacks Brief gaps"
+grep -q 'factory/lessons.md' "$KIT/.claude/agents/lead.md" || fail "lead does not log brief gaps"
+for a in worker implementer; do grep -q 'Status: blocked' "$KIT/.claude/agents/$a.md" || fail "$a has no blocked path"; done
+[[ -f "$T/fresh/.claude/agents/lessons-groomer.md" && -f "$T/fresh/.claude/skills/reflect/SKILL.md" ]] || fail "lessons groomer not installed"
+grep -q '^tools: Read, Grep, Glob, Edit$' "$KIT/.claude/agents/lessons-groomer.md" || fail "lessons-groomer tools widened"
 for s in brainstorming systematic-debugging ponytail; do
   [[ -f "$T/fresh/.claude/skills/$s/SKILL.md" && -f "$T/fresh/.claude/skills/$s/LICENSE" ]] || fail "$s skill or licence not installed"
 done
