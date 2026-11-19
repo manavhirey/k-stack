@@ -9,7 +9,7 @@ Turn the user's request into a brief at `factory/work/<slug>/brief.md`, using `f
 Request: $ARGUMENTS
 
 1. Pick a short kebab-case slug. Create `factory/work/<slug>/`.
-2. Investigate before asking: read the relevant code, existing tests, CI config and docs so you can propose concrete scope and checkable criteria yourself. Use the `scout` agent for broad lookups.
+2. Investigate before asking: read `factory/lessons.md` if it exists (gaps past briefs left open), the relevant code, existing tests, CI config and docs so you can propose concrete scope and checkable criteria yourself. Use the `scout` agent for broad lookups.
 3. If the request leaves *what* is wanted, or *why*, unclear, run the conversation with the `brainstorming` skill first (one question at a time, approaches laid out, your calls stated). Its written design is this brief. If everything that matters is already in the request, skip it.
 4. For a large task that adds or reshapes structure (new modules, class hierarchies, extension points), read `.claude/skills/reviewing-py-code/references/design-patterns.md` and `.claude/skills/reviewing-py-code/examples/solid-principles.md` and record any pattern you choose, and why, under "Approaches considered". Most briefs need none; never add a pattern the task doesn't call for.
 5. Draft all five sections. For **success evidence**, write criteria a machine or a person can check, each with the exact command or observation that proves it. Prefer 3–7 criteria. Add a "Not required" line so there is a clear stopping point. For subjective work, ask for or point to a reference example or rubric.

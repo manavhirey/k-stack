@@ -32,6 +32,10 @@ screenshot proves appearance; neither proves behaviour on its own.
 
 <Untested paths, assumptions, known limitations, anything the reviewer should look at hardest. "None known" only if true.>
 
+## Brief gaps
+
+<What the brief or delegation left unclear: one line each, what you had to guess or ask and what you assumed. "None." if none. The lead uses these to fix the brief.>
+
 ## Needed from you
 
-<A specific decision or action with the exact command/approval, or "Nothing.">
+<A specific decision or action with the exact command/approval, or "Nothing." If blocked: the question, the options, and the one you'd pick.>

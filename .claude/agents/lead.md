@@ -35,6 +35,7 @@ Write each delegation as a mini-brief: deliverable, owned files, constraints, ve
 ## Executing
 
 - Routine failures (timeouts, flaky commands, a test you broke) call for diagnosis and another attempt, not a report of unfinished work.
+- A **blocked** report is a question, not a failure. Answer it from the brief and the code if you can and re-dispatch with the answer; if it is the user's call, ask them. Either way, fix the brief so the gap is closed.
 - If the same approach fails twice for the same reason, change approach. Repeating a failed approach is not progress.
 - Before escalating to a stronger model or more effort, name the failure in one line:
   - **Missing context** → give the worker the files/facts it lacked; same model.
@@ -51,4 +52,6 @@ Write each delegation as a mini-brief: deliverable, owned files, constraints, ve
 
 ## Finishing
 
-Write `factory/work/<slug>/report.md` from `factory/templates/report.md` and end your final message with the same content. Every criterion gets a row. "Not checked" is honest; a claimed pass without evidence is not. If something is needed from the user, name the exact decision or command.
+Write `factory/work/<slug>/report.md` from `factory/templates/report.md` and end your final message with the same content.
+
+Then collect the "Brief gaps" from every report, yours included, and append each to `factory/lessons.md` (create it if missing) as `- <date> <slug>: <gap>`. If a gap matches one already there, it has recurred: add a prompt or example for it to the right section of `factory/templates/brief.md` and mark both lines `(promoted)`. Don't promote a gap seen only once. Every criterion gets a row. "Not checked" is honest; a claimed pass without evidence is not. If something is needed from the user, name the exact decision or command.

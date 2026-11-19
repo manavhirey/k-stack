@@ -43,6 +43,9 @@ grep -q "^  - reviewing-py-code" "$KIT/.claude/agents/reviewer.md" || fail "revi
 for f in .claude/skills/brief/SKILL.md .claude/agents/lead.md; do
   for r in $(grep -o "\.claude/skills/reviewing-py-code/[a-z/-]*\.md" "$KIT/$f"); do [[ -f "$T/fresh/$r" ]] || fail "$f references missing $r"; done
 done
+grep -q '^## Brief gaps' "$KIT/factory/templates/report.md" || fail "report template lacks Brief gaps"
+grep -q 'factory/lessons.md' "$KIT/.claude/agents/lead.md" || fail "lead does not log brief gaps"
+for a in worker implementer; do grep -q 'Status: blocked' "$KIT/.claude/agents/$a.md" || fail "$a has no blocked path"; done
 for s in brainstorming systematic-debugging ponytail; do
   [[ -f "$T/fresh/.claude/skills/$s/SKILL.md" && -f "$T/fresh/.claude/skills/$s/LICENSE" ]] || fail "$s skill or licence not installed"
 done
