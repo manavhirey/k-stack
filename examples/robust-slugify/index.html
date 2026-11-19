@@ -1,0 +1,8 @@
+<!doctype html><meta charset=utf-8><title>Slugger</title>
+<label for=t>Title</label><input id=t><button id=go>Make slug</button>
+<output id=out aria-live=polite></output>
+<script>
+document.getElementById('go').onclick=()=>{const v=document.getElementById('t').value;
+ if(!v.trim()){document.getElementById('out').textContent='Enter a title';return}
+ document.getElementById('out').textContent=v.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+</script>
