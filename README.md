@@ -41,8 +41,8 @@ Small, obvious fixes don't need a brief. Use the loop for anything you'd want to
 | `factory/templates/review.md` | Findings labelled demonstrated / likely / speculative |
 | `factory/templates/handoff.md` | Goal, decisions, state, checks done, remaining work, blockers |
 | `factory/FACTORY.md` | Working agreement, imported into CLAUDE.md with `@factory/FACTORY.md` |
-| `.claude/agents/` | `lead` (fable/high), `implementer` (opus/high), `worker` (sonnet/medium), `scout` (haiku/low, read-only), `reviewer` (fable/high, no edit tools) |
-| `.claude/skills/` | `brief`, `build`, `factory-review`, `factory-verify`, `handoff`, `tune-instructions` |
+| `.claude/agents/` | `lead` (fable/high), `implementer` (opus/high, preloads a pinned [ponytail](https://github.com/dietrichgebert/ponytail) skill), `worker` (sonnet/medium), `scout` (haiku/low, read-only), `reviewer` (fable/high, no edit tools) |
+| `.claude/skills/` | `brief`, `build`, `factory-review`, `factory-verify`, `handoff`, `tune-instructions`, plus vendored `ponytail` (see its `VENDORED.md`) |
 | `.claude/settings.json` | allow / ask / deny rules that actually enforce the boundaries |
 | `docs/model-and-effort.md` | When to use which model and effort, and how to diagnose before escalating |
 
