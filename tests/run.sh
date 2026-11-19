@@ -34,6 +34,8 @@ python3 -c "import json,sys; d=json.load(open(sys.argv[1]))['permissions']['deny
   || fail "settings deny rules missing"
 
 # 5. Agent frontmatter has model + effort
+grep -q "^  - ponytail" "$KIT/.claude/agents/implementer.md" || fail "implementer does not preload ponytail"
+[[ -f "$T/fresh/.claude/skills/ponytail/SKILL.md" ]] || fail "ponytail skill not installed"
 for a in "$KIT"/.claude/agents/*.md; do
   head -8 "$a" | grep -q '^model: ' || fail "$(basename "$a"): no model"
   head -8 "$a" | grep -q '^effort: ' || fail "$(basename "$a"): no effort"
