@@ -29,7 +29,7 @@
 
 ## Advisory (Python)
 
-<!-- Only when the diff touches .py files (reviewing-py-code skill). One line each:
+<!-- Only when the diff touches .py files (py-code-review skill). One line each:
      path:line — problem — suggested change. Never affects the verdict. Delete if empty. -->
 
 ## Not reviewed

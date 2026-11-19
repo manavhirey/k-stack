@@ -1,5 +1,5 @@
 ---
-name: reviewing-py-code
+name: py-code-review
 description: Advisory Python code-quality pass for the reviewer. Use during a review when the diff touches .py files; adds Clean Code, DRY and code-smell notes on the changed lines only, without affecting the verdict except for bugs or security issues.
 ---
 
