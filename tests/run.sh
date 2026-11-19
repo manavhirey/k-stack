@@ -46,6 +46,8 @@ done
 grep -q '^## Brief gaps' "$KIT/factory/templates/report.md" || fail "report template lacks Brief gaps"
 grep -q 'factory/lessons.md' "$KIT/.claude/agents/lead.md" || fail "lead does not log brief gaps"
 for a in worker implementer; do grep -q 'Status: blocked' "$KIT/.claude/agents/$a.md" || fail "$a has no blocked path"; done
+[[ -f "$T/fresh/.claude/agents/lessons-groomer.md" && -f "$T/fresh/.claude/skills/groom-lessons/SKILL.md" ]] || fail "lessons groomer not installed"
+grep -q '^tools: Read, Grep, Glob, Edit$' "$KIT/.claude/agents/lessons-groomer.md" || fail "lessons-groomer tools widened"
 for s in brainstorming systematic-debugging ponytail; do
   [[ -f "$T/fresh/.claude/skills/$s/SKILL.md" && -f "$T/fresh/.claude/skills/$s/LICENSE" ]] || fail "$s skill or licence not installed"
 done

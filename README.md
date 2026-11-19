@@ -29,6 +29,7 @@ The installer copies the agents, skills, templates and docs. It never overwrites
 | Re-check after fixes | `/factory-verify <slug>` | updated `report.md` |
 | Save state | `/handoff <slug>` | `handoff.md` |
 | Maintain instructions | `/tune-instructions` (monthly or after a model upgrade) | proposed edits |
+| Trim lessons | `/groom-lessons` (on demand, or when `factory/lessons.md` passes 40 lines) | groomed lessons file + reasons |
 
 Small, obvious fixes don't need a brief. Use the loop for anything you'd want to review.
 
@@ -41,8 +42,8 @@ Small, obvious fixes don't need a brief. Use the loop for anything you'd want to
 | `factory/templates/review.md` | Findings labelled demonstrated / likely / speculative |
 | `factory/templates/handoff.md` | Goal, decisions, state, checks done, remaining work, blockers |
 | `factory/FACTORY.md` | Working agreement, imported into CLAUDE.md with `@factory/FACTORY.md` |
-| `.claude/agents/` | `lead` (fable/high), `implementer` (opus/high, preloads pinned [ponytail](https://github.com/dietrichgebert/ponytail) and [systematic-debugging](https://github.com/obra/superpowers) skills), `worker` (sonnet/medium, preloads `systematic-debugging`), `scout` (haiku/low, read-only), `reviewer` (fable/high, no edit tools, preloads an advisory `reviewing-py-code` pass for `.py` diffs) |
-| `.claude/skills/` | `brief`, `build`, `factory-review`, `factory-verify`, `handoff`, `tune-instructions`, plus vendored `ponytail`, `brainstorming`, `systematic-debugging` and `reviewing-py-code` (each pinned, with a `VENDORED.md` recording source, commit and local edits) |
+| `.claude/agents/` | `lead` (fable/high), `implementer` (opus/high, preloads pinned [ponytail](https://github.com/dietrichgebert/ponytail) and [systematic-debugging](https://github.com/obra/superpowers) skills), `worker` (sonnet/medium, preloads `systematic-debugging`), `scout` (haiku/low, read-only), `lessons-groomer` (sonnet/medium, edits only `factory/lessons.md`), `reviewer` (fable/high, no edit tools, preloads an advisory `reviewing-py-code` pass for `.py` diffs) |
+| `.claude/skills/` | `brief`, `build`, `factory-review`, `factory-verify`, `handoff`, `tune-instructions`, `groom-lessons`, plus vendored `ponytail`, `brainstorming`, `systematic-debugging` and `reviewing-py-code` (each pinned, with a `VENDORED.md` recording source, commit and local edits) |
 | `.claude/settings.json` | allow / ask / deny rules that actually enforce the boundaries |
 | `docs/model-and-effort.md` | When to use which model and effort, and how to diagnose before escalating |
 
