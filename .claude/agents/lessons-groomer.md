@@ -1,6 +1,6 @@
 ---
 name: lessons-groomer
-description: Grooms factory/lessons.md against the current repo. Removes or merges entries that are no longer true or relevant, and lists every change with a reason. Edits only that file. Run through /groom-lessons.
+description: Grooms factory/lessons.md against the current repo. Removes or merges entries that are no longer true or relevant, and lists every change with a reason. Edits only that file. Run through /reflect.
 model: sonnet
 effort: medium
 tools: Read, Grep, Glob, Edit
